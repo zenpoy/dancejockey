@@ -2,11 +2,14 @@
 
 #include "ofMain.h"
 
+#include "NiTE.h"
+
 class testApp : public ofBaseApp{
 	public:
 		void setup();
 		void update();
 		void draw();
+		void exit();
 		
 		void keyPressed(int key);
 		void keyReleased(int key);
@@ -17,4 +20,9 @@ class testApp : public ofBaseApp{
 		void windowResized(int w, int h);
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
+
+
+		nite::UserTrackerFrameRef userTrackerFrame;
+		nite::UserTracker userTracker;
+		nite::Status niteRc;
 };

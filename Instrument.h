@@ -7,9 +7,10 @@ class CirclePainter : Instrument {
 
 public:
 
-	CirclePainter() : _radiusChangeRate(0.01), _initRadius(10) 
+	CirclePainter() : _radiusChangeRate(0.01), _initRadius(10)
 	{
 		_radius = _initRadius;
+		_wantedRadius = _initRadius;
 	};
 
 	void setup()
@@ -26,5 +27,4 @@ private:
 	float _wantedRadius;
 	float _radiusChangeRate;
 	float _initRadius;
-
 };

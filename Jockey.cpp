@@ -4,7 +4,7 @@
 void MouseJockey::mouseMoved(ofMouseEventArgs& e)
 {
 	//raw event input
-	_positionHistory.push_front(ofPoint(e.x,e.y));
+	_positionHistory.push_front(ofPoint(float(e.x),float(e.y)));
 	if (_positionHistory.size() <= _historySize)
 	{
 		return;

@@ -13,16 +13,13 @@ public:
 
 	void setup()
 	{
-		ofAddListener(ofEvents().mouseMoved , this, &MouseJockey::mouseMoved);
-		//	ofRegisterMouseEvents(this);
+		ofRegisterMouseEvents(this);
 	}
 
-	//void mouseMoved(int x, int y);
 	void mouseMoved(ofMouseEventArgs&);
-
-//	void mouseDragged(int x, int y, int button){};
-//	void mousePressed(int x, int y, int button){};
-//	void mouseReleased(int x, int y, int button){};
+	void mouseDragged(ofMouseEventArgs&){};
+	void mousePressed(ofMouseEventArgs&){};
+	void mouseReleased(ofMouseEventArgs&){};
 
 
 	std::deque<ofPoint> positionHistory() const { return _positionHistory; }

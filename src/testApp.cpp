@@ -3,17 +3,18 @@
 
 //--------------------------------------------------------------
 void testApp::setup(){
+	ofSetVerticalSync(true);
 	jockey.setup();
 	circlePainter.setup();
 }
 
 //--------------------------------------------------------------
 void testApp::update(){
+	circlePainter.update(); // todo 1. ofAttach(draw...)
 }
 
 //--------------------------------------------------------------
 void testApp::draw(){
-//	ofClear(0);
 	ofBackground(0);
 	circlePainter.draw(); // todo 1. ofAttach(draw...)
 }

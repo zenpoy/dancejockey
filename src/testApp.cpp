@@ -4,6 +4,7 @@
 //--------------------------------------------------------------
 void testApp::setup(){
 
+	// OpenNI setup
 	openni::Status rc = openni::OpenNI::initialize();
 	if (rc != openni::STATUS_OK)
 	{
@@ -59,7 +60,7 @@ void testApp::update(){
 
 //--------------------------------------------------------------
 void testApp::draw(){
-
+	ofCircle(mousePosition, 10.0f);
 }
 
 //--------------------------------------------------------------
@@ -74,7 +75,8 @@ void testApp::keyReleased(int key){
 
 //--------------------------------------------------------------
 void testApp::mouseMoved(int x, int y){
-
+	mousePosition.x = x;
+	mousePosition.y = y;
 }
 
 //--------------------------------------------------------------

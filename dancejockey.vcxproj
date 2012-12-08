@@ -51,7 +51,8 @@
     <CustomBuildAfterTargets Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     </CustomBuildAfterTargets>
     <CustomBuildAfterTargets Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Build</CustomBuildAfterTargets>
-    <CustomBuildBeforeTargets Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Run</CustomBuildBeforeTargets>
+    <CustomBuildBeforeTargets Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    </CustomBuildBeforeTargets>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -77,7 +78,8 @@
     </Link>
     <PostBuildEvent />
     <CustomBuildStep>
-      <Command>getExternals.bat</Command>
+      <Command>
+      </Command>
     </CustomBuildStep>
     <PostBuildEvent>
       <Command>getExternals.bat &amp;&amp; xcopy /e /i /y "$(ProjectDir)..\..\..\export\vs2010\*.dll" "$(ProjectDir)bin"</Command>
@@ -110,6 +112,9 @@
     <CustomBuildStep>
       <Command>getExternals.bat</Command>
     </CustomBuildStep>
+    <PostBuildEvent>
+      <Command>getExternals.bat &amp;&amp; xcopy /e /i /y "$(ProjectDir)..\..\..\export\vs2010\*.dll" "$(ProjectDir)bin"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp" />

@@ -7,6 +7,7 @@ void testApp::setup(){
 	ofSetCircleResolution(100);
 	jockey.setup();
 	circlePainter.setup();
+	
 }
 
 //--------------------------------------------------------------
@@ -23,6 +24,12 @@ void testApp::draw(){
 //--------------------------------------------------------------
 void testApp::keyPressed(int key){
 
+	switch(key)
+	{
+	case 'f':
+		ofToggleFullscreen();
+		break;
+	}
 }
 
 //--------------------------------------------------------------

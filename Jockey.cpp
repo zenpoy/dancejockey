@@ -1,7 +1,7 @@
 #include "Jockey.h"
 
 
-void Jockey::mouseMoved(ofMouseEventArgs& e)
+void MouseJockey::mouseMoved(ofMouseEventArgs& e)
 {
 	//raw event input
 	_positionHistory.push_front(ofPoint(e.x,e.y));

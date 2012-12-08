@@ -25,6 +25,6 @@ public:
 
 
 private:
-	Jockey jockey;
+	MouseJockey jockey;
 	CirclePainter circlePainter;
 };

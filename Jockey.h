@@ -2,15 +2,18 @@
 #include "ofEvents.h"
 #include <deque>
 
-class Jockey {
+class Jockey {};
+
+class MouseJockey
+{
 
 public:
-	Jockey() : _historySize(2) {
+	MouseJockey() : _historySize(2) {
 	}
 
 	void setup()
 	{
-		ofAddListener(ofEvents().mouseMoved , this, &Jockey::mouseMoved);
+		ofAddListener(ofEvents().mouseMoved , this, &MouseJockey::mouseMoved);
 		//	ofRegisterMouseEvents(this);
 	}
 

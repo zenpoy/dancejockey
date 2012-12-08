@@ -4,6 +4,9 @@
 //--------------------------------------------------------------
 void testApp::setup(){
 
+	jockey.setup();
+	circlePainter.setup();
+
 	// OpenNI setup
 	openni::Status rc = openni::OpenNI::initialize();
 	if (rc != openni::STATUS_OK)
@@ -60,7 +63,9 @@ void testApp::update(){
 
 //--------------------------------------------------------------
 void testApp::draw(){
-	ofCircle(mousePosition, 10.0f);
+//	ofClear(0);
+	ofBackground(0);
+	circlePainter.draw(); // todo 1. ofAttach(draw...)
 }
 
 //--------------------------------------------------------------
@@ -75,8 +80,8 @@ void testApp::keyReleased(int key){
 
 //--------------------------------------------------------------
 void testApp::mouseMoved(int x, int y){
-	mousePosition.x = x;
-	mousePosition.y = y;
+	
+
 }
 
 //--------------------------------------------------------------

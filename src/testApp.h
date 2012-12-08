@@ -3,6 +3,8 @@
 #include "ofMain.h"
 
 #include "NiTE.h"
+#include "..\Jockey.h"
+#include "..\Instrument.h"
 
 class testApp : public ofBaseApp{
 public:
@@ -27,26 +29,6 @@ public:
 	nite::Status niteRc;
 
 private:
-	class Jockey {
-		Jockey() : sizeOfHistory(1) {
-
-		}
-	private:
-		std::deque<ofPoint> positionHistory;
-		unsigned int sizeOfHistory;
-
-	};
-
 	Jockey jockey;
-
-	class Instrument {
-	};
-
-	class CirclePainter : Instrument {
-	private:
-		float circleRadius;
-	};
-
-	ofPoint mousePosition;
-
+	CirclePainter circlePainter;
 };

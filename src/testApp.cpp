@@ -4,6 +4,7 @@
 //--------------------------------------------------------------
 void testApp::setup(){
 	ofSetVerticalSync(true);
+	ofSetCircleResolution(100);
 	jockey.setup();
 	circlePainter.setup();
 }

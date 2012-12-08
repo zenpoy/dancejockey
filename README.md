@@ -5,8 +5,10 @@ A sonification of movement and visualization of sound
 ## Design
 ### Jockey
 This is the player. The Jockey generates events such as *bpm changed*, etc.
-### instruments
-An instrument is an object that listens to events and produce audio / visual signals and other events.
+the Jockey is listening to the raw events such as handMove, mouseMoved, , etc. and in turn he 's in charge of processing them and sends 
+
+### Instrument
+An instrument is an object that listens to the Jockeys' events and produce audio / visual signals and generates other events.
 
 ## Brainstorming
 - multiple players, each controlling independently over sound

@@ -18,7 +18,7 @@ public:
 
 	void mouseMoved(ofMouseEventArgs&);
 	void mouseDragged(ofMouseEventArgs&){};
-	void mousePressed(ofMouseEventArgs&){};
+	void mousePressed(ofMouseEventArgs&);
 	void mouseReleased(ofMouseEventArgs&){};
 
 
@@ -30,17 +30,25 @@ private:
 	unsigned int _historySize;
 };
 
+class JockeyEventArgs{};
+
 class JockeyEvents{
 public:
 	ofEvent<float> velocityUpdate;
+	ofEvent<JockeyEventArgs> bang;
 	//TODO: more events here...
 };
 
 JockeyEvents& getJockeyEvents();
 
-//JockeyEvents voidEventArgs;
 
 template<class ListenerClass>
 void registerJockeyVelocityEvents(ListenerClass * listener){
 	ofAddListener(getJockeyEvents().velocityUpdate, listener, &ListenerClass::velocityUpdate);
 }
+
+template<class ListenerClass>
+void registerJockeyBangEvents(ListenerClass * listener){
+	ofAddListener(getJockeyEvents().bang, listener, &ListenerClass::bang);
+}
+

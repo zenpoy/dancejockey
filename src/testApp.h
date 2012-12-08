@@ -2,7 +2,6 @@
 
 #include "ofMain.h"
 
-#include "NiTE.h"
 #include "..\Jockey.h"
 #include "..\Instrument.h"
 
@@ -24,9 +23,6 @@ public:
 	void gotMessage(ofMessage msg);
 
 
-	nite::UserTrackerFrameRef userTrackerFrame;
-	nite::UserTracker userTracker;
-	nite::Status niteRc;
 
 private:
 	Jockey jockey;

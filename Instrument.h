@@ -8,7 +8,7 @@ class CirclePainter : Instrument {
 
 public:
 
-	CirclePainter() : _radius(10, 0.01), _frequency(120, 0.01), _bangHistorySize(12)
+	CirclePainter() : _radius(10, 0.01f), _frequency(120, 0.01f), _bangHistorySize(12)
 	{
 		
 	};

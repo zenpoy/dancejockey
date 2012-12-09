@@ -31,7 +31,7 @@ void CirclePainter::draw()
 {
 	ofPushStyle();
 	ofSetColor(255, 0, 0);
-	ofCircle(ofGetWindowWidth() / 2, ofGetWindowHeight() / 2, _radius);
+	ofCircle(ofGetWindowWidth() / 2, ofGetWindowHeight() / 2, _radius.value);
 	ofPopStyle();
 }
 

@@ -1,5 +1,6 @@
 #include "Instrument.h"
 #include "ofGraphics.h"
+#include "ofAppRunner.h"
 
 void CirclePainter::update()
 {
@@ -12,7 +13,7 @@ void CirclePainter::draw()
 {
 	ofPushStyle();
 	ofSetColor(255, 0, 0);
-	ofCircle(100,100, _radius);
+	ofCircle(ofGetWindowWidth() / 2, ofGetWindowHeight() / 2, _radius);
 	ofPopStyle();
 }
 

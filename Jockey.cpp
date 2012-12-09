@@ -1,5 +1,6 @@
 #include "Jockey.h"
 
+JockeyEventArgs bangEventArgs;
 
 void MouseJockey::mouseMoved(ofMouseEventArgs& e)
 {
@@ -27,6 +28,11 @@ void MouseJockey::mouseMoved(ofMouseEventArgs& e)
 
 	//send Event
 
+}
+
+void MouseJockey::mousePressed( ofMouseEventArgs& )
+{
+	ofNotifyEvent(getJockeyEvents().bang, bangEventArgs); //TODO send id
 }
 
 JockeyEvents& getJockeyEvents()

@@ -7,18 +7,21 @@ void testApp::setup(){
 	ofSetCircleResolution(100);
 	jockey.setup();
 	circlePainter.setup();
+	metronome.setup();
 	
 }
 
 //--------------------------------------------------------------
 void testApp::update(){
 	circlePainter.update(); // todo 1. ofAttach(draw...)
+	metronome.update(); // todo 1. ofAttach(draw...)
 }
 
 //--------------------------------------------------------------
 void testApp::draw(){
 	ofBackground(0);
 	circlePainter.draw(); // todo 1. ofAttach(draw...)
+	metronome.draw();
 }
 
 //--------------------------------------------------------------

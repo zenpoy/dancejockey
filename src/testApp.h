@@ -25,4 +25,5 @@ public:
 private:
 	MouseJockey jockey;
 	CirclePainter circlePainter;
+	Metronome metronome;
 };

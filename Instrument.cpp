@@ -8,24 +8,6 @@ void CirclePainter::update()
 	_radius.value = ofLerp(_radius.value, _radius.target, _radius.changeRate);
 	_radius.target = ofLerp(_radius.target, _radius.init, _radius.changeRate);
 
-	//process bangs
-	/*
-	SOLVE FLOAT vs. LONGLONG issue
-	if (_bangHistory.size() > 0)
-	{
-		unsigned long long meanTime = 0;
-		for (int i=1; i < _bangHistory.size(); i++)
-		{
-			unsigned long long diff = _bangHistory[i] - _bangHistory[i-1];
-			meanTime += diff;
-		}
-		meanTime /= _bangHistory.size();
-	}
-	*/
-	//	_frequency.value = ofLerp(_radius.value, _radius.target, _radius.changeRate);
-
-
-
 }
 void CirclePainter::draw()
 {
@@ -40,15 +22,58 @@ void CirclePainter::velocityUpdate( float& velocity )
 	_radius.target += velocity; 
 }
 
-void CirclePainter::bang( JockeyEventArgs& )
+void Metronome::bang( JockeyEventArgs& )
 {
-	_bangHistory.push_front(ofGetSystemTime());
+	_bangHistory.push_back(ofGetSystemTime());
 	if (_bangHistory.size() <= _bangHistorySize)
 	{
 		return;
 	}
 	else
 	{
-		_bangHistory.pop_back();
+		_bangHistory.pop_front();
 	}
+}
+
+void Metronome::update()
+{
+	//process bangs
+	//SOLVE FLOAT vs. LONGLONG issue
+	if (_bangHistory.size() > 1)
+	{
+		unsigned long long meanTime = 0;
+		for (int i=1; i < _bangHistory.size(); i++)
+		{
+			unsigned long long diff = _bangHistory[i] - _bangHistory[i-1];
+			meanTime += diff;
+		}
+		_frequency.value = meanTime / _bangHistory.size();
+		printf("f: %d\n", _frequency.value);
+	}
+
+	_beatCountdown -= 1;
+
+	if (_beatCountdown > 1) {
+		_isSendBeat = false;
+	}
+
+	if (_beatCountdown < 1)
+	{
+		_isSendBeat = true;
+		_beatCountdown = _frequency.value;
+	}
+}
+
+void Metronome::draw()
+{
+	ofPushStyle();
+	ofSetColor(0, 255, 128);
+	ofRect(0, 0, _beatCountdown , 5);
+
+	if (_isSendBeat) 
+	{
+		ofRect(100, 100, 100, 100);
+	}
+
+	ofPopStyle();
 }

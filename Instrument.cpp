@@ -11,16 +11,31 @@ void CirclePainter::update()
 }
 void CirclePainter::draw()
 {
+	ofPushMatrix();
 	ofPushStyle();
 	ofSetColor(255, 0, 0);
-	ofCircle(ofGetWindowWidth() / 2, ofGetWindowHeight() / 2, _radius.value);
+	_fill ? ofFill() : ofNoFill();
+
+	ofPoint screenCenter(ofGetWindowWidth() / 2, ofGetWindowHeight() / 2);
+	ofTranslate(screenCenter);
+	ofCircle(ofPoint(), _radius.value);
+	
 	ofPopStyle();
+	ofPopMatrix();
 }
 
 void CirclePainter::velocityUpdate( float& velocity )
 {
 	_radius.target += velocity; 
 }
+
+void CirclePainter::beat( InstrumentEventArgs& )
+{
+	_fill = !_fill;
+}
+
+
+MetronomeEvents Metronome::events;
 
 void Metronome::bang( JockeyEventArgs& )
 {
@@ -51,7 +66,7 @@ void Metronome::update()
 		printf("f: %d\n", _frequency.value);
 	}
 
-	_beatCountdown -= 1;
+	_beatCountdown--;
 
 	if (_beatCountdown > 1) {
 		_isSendBeat = false;
@@ -61,6 +76,8 @@ void Metronome::update()
 	{
 		_isSendBeat = true;
 		_beatCountdown = _frequency.value;
+		InstrumentEventArgs beat;
+		ofNotifyEvent(events.beat, beat); //TODO send id
 	}
 }
 

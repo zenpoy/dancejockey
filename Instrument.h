@@ -2,6 +2,9 @@
 #include "Jockey.h"
 #include <deque>
 
+class InstrumentEvents{};
+class InstrumentEventArgs{};
+
 class Instrument{
 public:
 	virtual void update() {};
@@ -21,6 +24,18 @@ protected:
 
 };
 
+
+class MetronomeEvents : InstrumentEvents
+{
+public:
+	ofEvent<InstrumentEventArgs> beat;
+};
+
+template<class ListenerClass>
+void registerMetronomeEvents(ListenerClass * listener){
+	ofAddListener(Metronome::events.beat, listener, &ListenerClass::beat);
+}
+
 class Metronome : Instrument {
 public:
 
@@ -31,6 +46,8 @@ public:
 	void update();
 	void draw();
 
+	static MetronomeEvents events;
+	
 	void setup()
 	{
 		registerJockeyBangEvents(this);
@@ -38,6 +55,7 @@ public:
 
 	void velocityUpdate(float& velocity);
 	void bang(JockeyEventArgs&);
+
 
 private:
 	Value<unsigned long long> _frequency;
@@ -61,11 +79,14 @@ public:
 	void setup()
 	{
 		registerJockeyVelocityEvents(this);
+		registerMetronomeEvents(this);		
 	}
 
 	void velocityUpdate(float& velocity);
+	void beat(InstrumentEventArgs&);
 
 private:
 	Value<float> _radius;
+	bool _fill;
 
 };

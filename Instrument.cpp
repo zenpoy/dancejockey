@@ -32,6 +32,7 @@ void CirclePainter::velocityUpdate( float& velocity )
 void CirclePainter::beat( InstrumentEventArgs& )
 {
 	_fill = !_fill;
+	_radius.value *= 2.2;
 }
 
 
@@ -52,8 +53,6 @@ void Metronome::bang( JockeyEventArgs& )
 
 void Metronome::update()
 {
-	//process bangs
-	//SOLVE FLOAT vs. LONGLONG issue
 	if (_bangHistory.size() > 1)
 	{
 		unsigned long long meanTime = 0;
@@ -66,6 +65,7 @@ void Metronome::update()
 		printf("f: %d\n", _frequency.value);
 	}
 
+	//TODO: Change this to use timer events
 	_beatCountdown--;
 
 	if (_beatCountdown > 1) {
@@ -83,14 +83,4 @@ void Metronome::update()
 
 void Metronome::draw()
 {
-	ofPushStyle();
-	ofSetColor(0, 255, 128);
-	ofRect(0, 0, _beatCountdown , 5);
-
-	if (_isSendBeat) 
-	{
-		ofRect(100, 100, 100, 100);
-	}
-
-	ofPopStyle();
 }

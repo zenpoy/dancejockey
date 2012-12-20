@@ -9,6 +9,7 @@ void testApp::setup(){
 	handJockey.setup();
 	mouseJockey.setup();
 	circlePainter.setup();
+	synthPlayer.setup();
 	metronome.setup();
 	
 }

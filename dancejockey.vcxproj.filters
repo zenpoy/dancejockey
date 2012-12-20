@@ -10,6 +10,7 @@
     <ClCompile Include="Jockey.cpp" />
     <ClCompile Include="Instrument.cpp" />
     <ClCompile Include="HandJockey.cpp" />
+    <ClCompile Include="SynthPlayer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -23,5 +24,6 @@
     <ClInclude Include="Jockey.h" />
     <ClInclude Include="Instrument.h" />
     <ClInclude Include="HandJockey.h" />
+    <ClInclude Include="SynthPlayer.h" />
   </ItemGroup>
 </Project>

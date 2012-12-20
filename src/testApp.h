@@ -5,6 +5,7 @@
 #include "..\Jockey.h"
 #include "..\Instrument.h"
 #include "..\HandJockey.h"
+#include "..\SynthPlayer.h"
 
 class testApp : public ofBaseApp{
 public:
@@ -28,5 +29,6 @@ private:
 	HandJockey handJockey;
 	MouseJockey mouseJockey;
 	CirclePainter circlePainter;
+	SynthPlayer synthPlayer;
 	Metronome metronome;
 };

@@ -24,8 +24,9 @@ public:
 	void gotMessage(ofMessage msg);
 
 private:
-	MouseJockey jockey;
+
 	HandJockey handJockey;
+	MouseJockey mouseJockey;
 	CirclePainter circlePainter;
 	Metronome metronome;
 };

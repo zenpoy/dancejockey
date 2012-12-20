@@ -55,6 +55,6 @@ void registerJockeyBangEvents(ListenerClass * listener){
 
 // helper function
 template<class ListenerClass>
-void registerHandTrackerEvents(ListenerClass * listener){
-	ofAddListener(getTrackerEvents().handUpdate, listener, &ListenerClass::handUpdate);
+void registerHandJockeyEvents(ListenerClass * listener){
+	ofAddListener(getJockeyEvents().handUpdate, listener, &ListenerClass::handUpdate);
 }

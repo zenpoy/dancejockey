@@ -5,7 +5,9 @@
 void testApp::setup(){
 	ofSetVerticalSync(true);
 	ofSetCircleResolution(100);
-	jockey.setup();
+
+	handJockey.setup();
+	mouseJockey.setup();
 	circlePainter.setup();
 	metronome.setup();
 	
@@ -78,4 +80,5 @@ void testApp::dragEvent(ofDragInfo dragInfo){
 
 void testApp::exit()
 {
+	handJockey.exit();
 }

@@ -4,6 +4,7 @@
 
 #include "..\Jockey.h"
 #include "..\Instrument.h"
+#include "..\HandJockey.h"
 
 class testApp : public ofBaseApp{
 public:
@@ -23,7 +24,9 @@ public:
 	void gotMessage(ofMessage msg);
 
 private:
-	MouseJockey jockey;
+
+	HandJockey handJockey;
+	MouseJockey mouseJockey;
 	CirclePainter circlePainter;
 	Metronome metronome;
 };

@@ -6,6 +6,7 @@
 #include "..\Instrument.h"
 #include "..\HandJockey.h"
 #include "..\SynthPlayer.h"
+#include "..\GestureJockey.h"
 
 class testApp : public ofBaseApp{
 public:
@@ -27,6 +28,7 @@ public:
 private:
 
 	HandJockey handJockey;
+	GestureJockey gestureJockey;
 	MouseJockey mouseJockey;
 	CirclePainter circlePainter;
 	SynthPlayer synthPlayer;

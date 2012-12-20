@@ -37,6 +37,8 @@ public:
 	ofEvent<float> velocityUpdate;
 	ofEvent<JockeyEventArgs> bang;
 	ofEvent<ofPoint> handUpdate;
+	ofEvent<bool> onGesture;
+
 	//TODO: more events here...
 };
 
@@ -58,3 +60,11 @@ template<class ListenerClass>
 void registerHandJockeyEvents(ListenerClass * listener){
 	ofAddListener(getJockeyEvents().handUpdate, listener, &ListenerClass::handUpdate);
 }
+
+
+// helper function
+template<class ListenerClass>
+void registerGestureJockeyEvents(ListenerClass * listener){
+	ofAddListener(getJockeyEvents().onGesture, listener, &ListenerClass::onGesture);
+}
+

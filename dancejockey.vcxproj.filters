@@ -11,6 +11,7 @@
     <ClCompile Include="Instrument.cpp" />
     <ClCompile Include="HandJockey.cpp" />
     <ClCompile Include="SynthPlayer.cpp" />
+    <ClCompile Include="GestureJockey.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -25,5 +26,6 @@
     <ClInclude Include="Instrument.h" />
     <ClInclude Include="HandJockey.h" />
     <ClInclude Include="SynthPlayer.h" />
+    <ClInclude Include="GestureJockey.h" />
   </ItemGroup>
 </Project>

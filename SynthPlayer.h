@@ -2,26 +2,27 @@
 #include "instrument.h"
 #include "ofSoundPlayer.h"
 
-class SynthPlayer :
-	public Instrument
+class SynthPlayer :	public Instrument
 {
 public:
-	SynthPlayer(void);
-	~SynthPlayer(void);
-	
+
 	void setup()
 	{
 		registerHandJockeyEvents(this);
+		registerGestureJockeyEvents(this);
 
-		system("dir");
-		synth.loadSound("sounds\\synth.wav");
+		synth.loadSound("./sounds/synth.wav");
 		synth.setVolume(0.75f);
+		synth.play();
+
 	}
 
 	void handUpdate(ofPoint& p);
+	void onGesture(bool& b);
 
 private:
 	ofSoundPlayer  synth;
+
 
 };
 

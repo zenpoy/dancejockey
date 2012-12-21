@@ -7,6 +7,9 @@
 #include "..\HandJockey.h"
 #include "..\SynthPlayer.h"
 #include "..\GestureJockey.h"
+#include "..\MouseJockey.h"
+#include "..\Metronome.h"
+#include "..\CirclePainter.h"
 
 class testApp : public ofBaseApp{
 public:

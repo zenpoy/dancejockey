@@ -1,43 +1,20 @@
 #pragma once
 #include "ofEvents.h"
-#include <deque>
 
 class Jockey {};
 
-class MouseJockey
+class Beat
 {
 
-public:
-	MouseJockey() : _historySize(2) {
-	}
-
-	void setup()
-	{
-		ofRegisterMouseEvents(this);
-	}
-
-	void mouseMoved(ofMouseEventArgs&);
-	void mouseDragged(ofMouseEventArgs&){};
-	void mousePressed(ofMouseEventArgs&);
-	void mouseReleased(ofMouseEventArgs&){};
-
-
-	std::deque<ofPoint> positionHistory() const { return _positionHistory; }
-	unsigned int historySize() const { return _historySize; }
-
-private:
-	std::deque<ofPoint> _positionHistory;
-	unsigned int _historySize;
 };
-
-class JockeyEventArgs{};
 
 class JockeyEvents{
 public:
 	ofEvent<float> velocityUpdate;
-	ofEvent<JockeyEventArgs> bang;
+	ofEvent<unsigned long long> bang;
 	ofEvent<ofPoint> handUpdate;
 	ofEvent<bool> onGesture;
+	ofEvent<Beat> beat;
 
 	//TODO: more events here...
 };
@@ -55,16 +32,18 @@ void registerJockeyBangEvents(ListenerClass * listener){
 	ofAddListener(getJockeyEvents().bang, listener, &ListenerClass::bang);
 }
 
-// helper function
 template<class ListenerClass>
 void registerHandJockeyEvents(ListenerClass * listener){
 	ofAddListener(getJockeyEvents().handUpdate, listener, &ListenerClass::handUpdate);
 }
 
-
-// helper function
 template<class ListenerClass>
 void registerGestureJockeyEvents(ListenerClass * listener){
 	ofAddListener(getJockeyEvents().onGesture, listener, &ListenerClass::onGesture);
+}
+
+template<class ListenerClass>
+void registerMetronomeEvents(ListenerClass * listener){
+	ofAddListener(getJockeyEvents().beat, listener, &ListenerClass::beat);
 }
 

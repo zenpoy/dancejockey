@@ -1,10 +1,7 @@
 #include "GestureJockey.h"
 
-
-
 void GestureJockey::handUpdate( ofPoint& p )
 {
-
 	_positionHistory.push_front(ofPoint(p));
 	if (_positionHistory.size() <= _historySize)
 	{
@@ -31,5 +28,4 @@ void GestureJockey::handUpdate( ofPoint& p )
 		bool x = true;
 		ofNotifyEvent(getJockeyEvents().onGesture, x); //TODO send id
 	}
-
 }

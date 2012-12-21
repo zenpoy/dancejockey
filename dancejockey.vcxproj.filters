@@ -12,6 +12,9 @@
     <ClCompile Include="HandJockey.cpp" />
     <ClCompile Include="SynthPlayer.cpp" />
     <ClCompile Include="GestureJockey.cpp" />
+    <ClCompile Include="MouseJockey.cpp" />
+    <ClCompile Include="Metronome.cpp" />
+    <ClCompile Include="CirclePainter.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -27,5 +30,8 @@
     <ClInclude Include="HandJockey.h" />
     <ClInclude Include="SynthPlayer.h" />
     <ClInclude Include="GestureJockey.h" />
+    <ClInclude Include="MouseJockey.h" />
+    <ClInclude Include="Metronome.h" />
+    <ClInclude Include="CirclePainter.h" />
   </ItemGroup>
 </Project>

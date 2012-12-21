@@ -9,8 +9,7 @@ void SynthPlayer::handUpdate( ofPoint& p )
 
 void SynthPlayer::onGesture(bool& b)
 {
-
-	if (!synth.getIsPlaying());// && translation > 100) 
+	if (!synth.getIsPlaying());
 	{
 		synth.play();
 	}

@@ -119,7 +119,6 @@
   <ItemGroup>
     <ClCompile Include="CirclePainter.cpp" />
     <ClCompile Include="GestureJockey.cpp" />
-    <ClCompile Include="Instrument.cpp" />
     <ClCompile Include="Jockey.cpp" />
     <ClCompile Include="HandJockey.cpp" />
     <ClCompile Include="Metronome.cpp" />

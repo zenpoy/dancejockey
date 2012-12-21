@@ -8,7 +8,6 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="Jockey.cpp" />
-    <ClCompile Include="Instrument.cpp" />
     <ClCompile Include="HandJockey.cpp" />
     <ClCompile Include="SynthPlayer.cpp" />
     <ClCompile Include="GestureJockey.cpp" />

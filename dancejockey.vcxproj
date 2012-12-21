@@ -117,6 +117,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="JockeyTypes.cpp" />
     <ClCompile Include="CirclePainter.cpp" />
     <ClCompile Include="GestureJockey.cpp" />
     <ClCompile Include="Jockey.cpp" />
@@ -128,6 +129,7 @@
     <ClCompile Include="SynthPlayer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="JockeyTypes.h" />
     <ClInclude Include="CirclePainter.h" />
     <ClInclude Include="GestureJockey.h" />
     <ClInclude Include="Instrument.h" />

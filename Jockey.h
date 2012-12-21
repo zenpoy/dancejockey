@@ -1,12 +1,8 @@
 #pragma once
 #include "ofEvents.h"
+#include "JockeyTypes.h"
 
 class Jockey {};
-
-class Beat
-{
-
-};
 
 class JockeyEvents{
 public:
@@ -14,6 +10,7 @@ public:
 	ofEvent<unsigned long long> bang;
 	ofEvent<ofPoint> handUpdate;
 	ofEvent<bool> onGesture;
+	ofEvent<Tempo> tempo;
 	ofEvent<Beat> beat;
 
 	//TODO: more events here...
@@ -45,5 +42,6 @@ void registerGestureJockeyEvents(ListenerClass * listener){
 template<class ListenerClass>
 void registerMetronomeEvents(ListenerClass * listener){
 	ofAddListener(getJockeyEvents().beat, listener, &ListenerClass::beat);
+	ofAddListener(getJockeyEvents().tempo, listener, &ListenerClass::tempo);
 }
 

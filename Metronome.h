@@ -2,32 +2,38 @@
 #include "Instrument.h"
 #include <deque>
 
+#include "ofUtils.h"
+
 class Metronome : Instrument
 {
 public:
 
-	Metronome() : _frequency(120, 0.01f), _bangHistorySize(12), _beatCountdown(100), _isSendBeat(false)
+	Metronome() :  _historySize(3)
 	{
 	}
 
-	void update();
-	void draw();
+	  void update();
+	  void draw();
 
-	void setup()
-	{
-		registerJockeyBangEvents(this);
-	}
+	  void setup()
+	  {
+		  registerJockeyBangEvents(this);
+		  _beat.setTimeStamp(ofGetSystemTime());
+	  }
 
-	void velocityUpdate(float& velocity);
-	void bang(unsigned long long&);
+	  void velocityUpdate(float& velocity);
+	  void bang(unsigned long long&);
 
 
 private:
-	Value<unsigned long long> _frequency;
+
+	Tempo _tempo;
+	Beat _beat;
+	
 	std::deque<unsigned long long> _bangHistory;
-	unsigned int _bangHistorySize;
-	unsigned long long _beatCountdown;
-	bool _isSendBeat;
+	std::deque<unsigned long long> _IntervalHistory;
+
+	unsigned int _historySize;
 };
 
 

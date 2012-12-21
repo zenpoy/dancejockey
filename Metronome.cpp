@@ -3,45 +3,50 @@
 
 void Metronome::bang(unsigned long long& t)
 {
-	_bangHistory.push_back(t);
-	if (_bangHistory.size() <= _bangHistorySize)
+	_bangHistory.push_front(t);
+	if (_bangHistory.size() > 2)
+	{
+		unsigned long long diff = _bangHistory[0] - _bangHistory[1];
+		if (diff < 3000)
+			_IntervalHistory.push_front(diff);
+		else
+			_IntervalHistory.clear();
+
+		_bangHistory.pop_back();
+	}
+
+
+	if (_IntervalHistory.size() <= _historySize)
 	{
 		return;
 	}
 	else
 	{
-		_bangHistory.pop_front();
+		unsigned long long intervalAverage = 0;
+		for (int i=0; i < _IntervalHistory.size(); i++)
+		{
+			intervalAverage += _IntervalHistory[i];
+		}
+
+		if (1) //check if stdev is not too high
+		{
+			_tempo.setBeatLengthMillis(intervalAverage);
+			ofNotifyEvent(getJockeyEvents().tempo, _tempo); //TODO send id
+		}
+		_IntervalHistory.pop_back();
 	}
 }
 
 void Metronome::update()
 {
-	//process bangs
-	//SOLVE FLOAT vs. LONGLONG issue
-	if (_bangHistory.size() > 1)
+	unsigned long long now = ofGetSystemTime();
+	float diffSec = float(now - _beat.getTimeStamp()) / 1000.0f;
+	float progress = (diffSec / _tempo.getBeatLength());
+
+	if (progress > 1.0)
 	{
-		unsigned long long meanTime = 0;
-		for (int i=1; i < _bangHistory.size(); i++)
-		{
-			unsigned long long diff = _bangHistory[i] - _bangHistory[i-1];
-			meanTime += diff;
-		}
-		_frequency.value = meanTime / _bangHistory.size();
-		printf("f: %d\n", _frequency.value);
-	}
-
-	_beatCountdown--;
-
-	if (_beatCountdown > 1) {
-		_isSendBeat = false;
-	}
-
-	if (_beatCountdown < 1)
-	{
-		_isSendBeat = true;
-		_beatCountdown = _frequency.value;
-		Beat beat;
-		ofNotifyEvent(getJockeyEvents().beat, beat); //TODO send id
+		_beat.setTimeStamp(now);
+		ofNotifyEvent(getJockeyEvents().beat, _beat); //TODO send id
 	}
 
 }
@@ -49,13 +54,40 @@ void Metronome::update()
 void Metronome::draw()
 {
 	ofPushStyle();
-	ofSetColor(0, 255, 128);
-	ofRect(0, 0, _beatCountdown , 5);
+	
+	/*
+	TODO:
+	//////////////////////////////////////////////////////////////////////////
+	ofDrawBitmapString("IntervalHistory", 0, 0);
 
-	if (_isSendBeat) 
+	for (int i = 0; i < _IntervalHistory.size(); i++)
 	{
-		ofRect(100, 100, 100, 100);
+		const int h = 10;
+		const int hSpace = 3;
+		const int x = 20;
+		const int y = i * (h+hSpace);
+		ofSetColor(0, 255, 128);
+		ofRect(x, y, _IntervalHistory[i], h);
+		
+		ofSetColor(128);
+		ofDrawBitmapString(ofToString(_IntervalHistory[i]), x, y);
+
 	}
+	*/
+
+	/*
+	stringstream ss;
+
+	ss << "bangs"<< endl;
+	for (int i = 0; i < _bangHistory.size(); i++)
+		ss << _bangHistory[i] << endl;
+
+		ss << "intervals"<< endl;
+	for (int i = 0; i < _IntervalHistory.size(); i++)
+		ss << _IntervalHistory[i] << endl;
+	ofDrawBitmapString(ss.str(), 0, 0);
+	
+	*/
 
 	ofPopStyle();
 }

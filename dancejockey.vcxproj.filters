@@ -8,8 +8,13 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="Jockey.cpp" />
-    <ClCompile Include="Instrument.cpp" />
     <ClCompile Include="HandJockey.cpp" />
+    <ClCompile Include="SynthPlayer.cpp" />
+    <ClCompile Include="GestureJockey.cpp" />
+    <ClCompile Include="MouseJockey.cpp" />
+    <ClCompile Include="Metronome.cpp" />
+    <ClCompile Include="CirclePainter.cpp" />
+    <ClCompile Include="JockeyTypes.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -23,5 +28,11 @@
     <ClInclude Include="Jockey.h" />
     <ClInclude Include="Instrument.h" />
     <ClInclude Include="HandJockey.h" />
+    <ClInclude Include="SynthPlayer.h" />
+    <ClInclude Include="GestureJockey.h" />
+    <ClInclude Include="MouseJockey.h" />
+    <ClInclude Include="Metronome.h" />
+    <ClInclude Include="CirclePainter.h" />
+    <ClInclude Include="JockeyTypes.h" />
   </ItemGroup>
 </Project>

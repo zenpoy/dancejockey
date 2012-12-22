@@ -117,17 +117,28 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Instrument.cpp" />
+    <ClCompile Include="JockeyTypes.cpp" />
+    <ClCompile Include="CirclePainter.cpp" />
+    <ClCompile Include="GestureJockey.cpp" />
     <ClCompile Include="Jockey.cpp" />
     <ClCompile Include="HandJockey.cpp" />
+    <ClCompile Include="Metronome.cpp" />
+    <ClCompile Include="MouseJockey.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\testApp.cpp" />
+    <ClCompile Include="SynthPlayer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="JockeyTypes.h" />
+    <ClInclude Include="CirclePainter.h" />
+    <ClInclude Include="GestureJockey.h" />
     <ClInclude Include="Instrument.h" />
     <ClInclude Include="Jockey.h" />
     <ClInclude Include="HandJockey.h" />
+    <ClInclude Include="Metronome.h" />
+    <ClInclude Include="MouseJockey.h" />
     <ClInclude Include="src\testApp.h" />
+    <ClInclude Include="SynthPlayer.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\libs\openFrameworksCompiled\project\vs2010\openframeworksLib.vcxproj">

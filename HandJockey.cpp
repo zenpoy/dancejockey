@@ -67,31 +67,8 @@ void HandJockey::threadedFunction()
 				if (hand.isTracking())
 				{
 					ofPoint pos(hand.getPosition().x, hand.getPosition().y, hand.getPosition().z);
-
 					printf("%d. (%5.2f, %5.2f, %5.2f)\n", hand.getId(), hand.getPosition().x, hand.getPosition().y, hand.getPosition().z);
-
-					/*
-					//raw event input
-					_positionHistory.push_front(pos));
-					if (_positionHistory.size() <= _historySize)
-					{
-						continue;
-					}
-					else
-					{
-						_positionHistory.pop_back();
-					}
-
-					//process
-
-					// example: calculate speed
-					ofPoint speed = _positionHistory.back() - _positionHistory.front();
-					float velocity = speed.length();
-					ofNotifyEvent(getTrackerEvents().handVelocityUpdate, velocity); //TODO send id
-					*/
 					ofNotifyEvent(getJockeyEvents().handUpdate, pos); //TODO send id
-
-
 				}
 			}
 		}

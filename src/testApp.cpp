@@ -7,8 +7,10 @@ void testApp::setup(){
 	ofSetCircleResolution(100);
 
 	handJockey.setup();
+	gestureJockey.setup();
 	mouseJockey.setup();
 	circlePainter.setup();
+	synthPlayer.setup();
 	metronome.setup();
 	
 }

@@ -17,3 +17,12 @@ An instrument is an object that listens to the Jockeys' events and produce audio
 - For each chosen instrument the user have different type of movement-sound integration but that doesn't mean that other movements (which don't have an effect on the specific instrument) goes to waste - they still goes into account when generating the video/image and by that effect the other player.
 - in other words I would say that you choose a complementary audiovisual instrument
 - e.g. One player is controlling the strings (pads), so his tiny-sharp movement have no effect on the string only flow-like slow movements changes the color and he tone of the string, but still if the tiny-sharp movements are represented on the shared visual and effects the drum player!
+- create an instrument from audioOutputExample
+- move to osc instead of ofevents
+- all jockies should send bang events
+  - bang events should include extra data depends on what type of jockey dent them
+	- filters and events
+	- xml for each instrument (jockeys are also instruments)
+	- xml for the whole setup
+- scratcher instrument
+	- it should control a sound playing instrument wich also recieves events from other instruments (sound server)

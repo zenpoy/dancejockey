@@ -46,7 +46,14 @@ void Metronome::update()
 	if (progress > 1.0)
 	{
 		_beat.setTimeStamp(now);
-		ofNotifyEvent(getJockeyEvents().beat, _beat); //TODO send id
+		_counter++;
+		_counter %= _tempo.getNominator();
+
+		int counter = _counter == 0 ? _tempo.getNominator() : _counter;
+
+		float level = float(counter) / _tempo.getNominator();
+
+		ofNotifyEvent(getJockeyEvents().click, level); //TODO send id
 	}
 
 }

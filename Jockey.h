@@ -12,6 +12,7 @@ public:
 	ofEvent<bool> onGesture;
 	ofEvent<Tempo> tempo;
 	ofEvent<Beat> beat;
+	ofEvent<float> click;
 
 	//TODO: more events here...
 };
@@ -43,5 +44,6 @@ template<class ListenerClass>
 void registerMetronomeEvents(ListenerClass * listener){
 	ofAddListener(getJockeyEvents().beat, listener, &ListenerClass::beat);
 	ofAddListener(getJockeyEvents().tempo, listener, &ListenerClass::tempo);
+	ofAddListener(getJockeyEvents().click, listener, &ListenerClass::click);
 }
 

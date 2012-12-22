@@ -1,5 +1,7 @@
 #pragma once
 
+
+
 class Beat
 {
 	unsigned long long timeStamp;
@@ -23,7 +25,7 @@ class Tempo
 	} signature;
 
 public:
-	Tempo() : _bpm(120), signature(4,1)
+	Tempo() : _bpm(120), signature(4,4)
 	{
 	}
 
@@ -33,5 +35,6 @@ public:
 	void setBeatLength(float sec) {setBpm(60.0f / sec);}
 	unsigned long long getBeatLengthMillis() {return unsigned long long(getBeatLength() * 1000.0f);}
 	void setBeatLengthMillis(unsigned long long millis) {setBeatLength(millis / 1000.0f);}
+	int getNominator() {return signature.nominator;}
 
 };

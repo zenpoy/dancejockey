@@ -22,10 +22,12 @@ public:
 	void velocityUpdate(float& velocity);
 	void beat(Beat& b);
 	void tempo(Tempo& b);
+	void click(float& level);
 
 private:
 
 	float _theta;
+	float _progress;
 
 	Tempo _tempo;
 	Beat _beat;

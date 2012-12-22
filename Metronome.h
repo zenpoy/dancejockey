@@ -7,7 +7,6 @@
 class Metronome : Instrument
 {
 public:
-
 	Metronome() :  _historySize(3)
 	{
 	}
@@ -29,6 +28,7 @@ private:
 
 	Tempo _tempo;
 	Beat _beat;
+	int _counter;
 	
 	std::deque<unsigned long long> _bangHistory;
 	std::deque<unsigned long long> _IntervalHistory;

@@ -8,11 +8,11 @@ void CirclePainter::update()
 	_radius.value = ofLerp(_radius.value, _radius.target, _radius.changeRate);
 	_radius.target = ofLerp(_radius.target, _radius.init, _radius.changeRate);
 
-	//TODO: move this to Beat, or Tempo or timeUtils.
-	unsigned long long now = ofGetSystemTime();
-	float diffSec = float(now - _beat.getTimeStamp()) / 1000.0f;
-	float progress = (diffSec / _tempo.getBeatLength());
-	_theta = progress * TWO_PI;
+	////TODO: move this to Beat, or Tempo or timeUtils.
+	//unsigned long long now = ofGetSystemTime();
+	//float diffSec = float(now - _beat.getTimeStamp()) / 1000.0f;
+	//float progress = (diffSec / _tempo.getBeatLength());
+	_theta = _progress * TWO_PI;
 
 }
 
@@ -52,5 +52,12 @@ void CirclePainter::beat(Beat& beat)
 {
 	//printf("beat t:%d\n", beat.getTimeStamp());
 	_beat = beat;
+	_fill = !_fill;
+}
+
+void CirclePainter::click(float& level)
+{
+	//printf("beat t:%d\n", beat.getTimeStamp());
+	_progress = level;
 	_fill = !_fill;
 }

@@ -19,10 +19,10 @@ An instrument is an object that listens to the Jockeys' events and produce audio
 - e.g. One player is controlling the strings (pads), so his tiny-sharp movement have no effect on the string only flow-like slow movements changes the color and he tone of the string, but still if the tiny-sharp movements are represented on the shared visual and effects the drum player!
 - create an instrument from audioOutputExample
 - move to osc instead of ofevents
-- all jockies should send bang events
-  - bang events should include extra data depends on what type of jockey dent them
-	- filters and events
-	- xml for each instrument (jockeys are also instruments)
-	- xml for the whole setup
+- all jockeys should send bang events
+  - bang events should include extra data depends on what type of jockey sent them
+  - filters and events
+- xml for each instrument (jockeys are also instruments)
+- xml for the whole setup
 - scratcher instrument
-	- it should control a sound playing instrument wich also recieves events from other instruments (sound server)
+  - it should control a sound playing instrument which also recieves events from other instruments (sound server)

@@ -14,7 +14,6 @@
     <ClCompile Include="MouseJockey.cpp" />
     <ClCompile Include="Metronome.cpp" />
     <ClCompile Include="CirclePainter.cpp" />
-    <ClCompile Include="JockeyTypes.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">

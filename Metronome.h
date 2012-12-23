@@ -17,7 +17,7 @@ public:
 	  void setup()
 	  {
 		  registerJockeyBangEvents(this);
-		  _beat.setTimeStamp(ofGetSystemTime());
+		  _tempo.setTimeStamp(ofGetSystemTime());
 	  }
 
 	  void velocityUpdate(float& velocity);
@@ -27,9 +27,7 @@ public:
 private:
 
 	Tempo _tempo;
-	Beat _beat;
-	int _counter;
-	
+
 	std::deque<unsigned long long> _bangHistory;
 	std::deque<unsigned long long> _IntervalHistory;
 

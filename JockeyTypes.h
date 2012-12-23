@@ -1,40 +1,61 @@
 #pragma once
-
-
-
-class Beat
-{
-	unsigned long long timeStamp;
-public:
-	unsigned long long getTimeStamp() const { return timeStamp; }
-	void setTimeStamp(unsigned long long val) { timeStamp = val; }
-
-	//TODO: getProgress
-};
+#include "ofUtils.h"
 
 class Tempo
 {
 	float _bpm;
-	struct Signature
-	{
-		//TODO: add support for additive (3+2+3), mixed (3/8 + 5/8), etc:
-		// http://en.wikipedia.org/wiki/Time_signature
-		int nominator;	//	3/4 or 4/4
-		int denominator;	//	3/8 or 3/4 
-		Signature (int nom, int denom) : nominator(nom), denominator(denom){}
-	} signature;
+	int _signature;
+	int _counter;
+	unsigned long long _timeStamp;
 
 public:
-	Tempo() : _bpm(120), signature(4,4)
+	Tempo() : _bpm(120), _signature(4), _counter(0), _timeStamp(0)
 	{
 	}
 
 	float getBpm() const {return _bpm;} 
-	void setBpm(float bpm) {_bpm = bpm * signature.nominator;}
+	void setBpm(float bpm) {_bpm = bpm * _signature;}
+
 	float getBeatLength() const {return 60.0f / getBpm();}
 	void setBeatLength(float sec) {setBpm(60.0f / sec);}
-	unsigned long long getBeatLengthMillis() {return unsigned long long(getBeatLength() * 1000.0f);}
+
+	unsigned long long getBeatLengthMillis() const {return unsigned long long(getBeatLength() * 1000.0f);}
 	void setBeatLengthMillis(unsigned long long millis) {setBeatLength(millis / 1000.0f);}
-	int getNominator() {return signature.nominator;}
+	
+
+	int getSignature() const {return _signature;}
+	int setSignature(int signature) {_signature = signature;}
+
+	int getCounter() const { return _counter; }
+	void setCounter(int val) { _counter = val; }
+
+	unsigned long long getTimeStamp() const { return _timeStamp; }
+	void setTimeStamp(unsigned long long val) { _timeStamp = val; }
+	
+	void incrementCounter() 
+	{
+		_counter++;
+		_counter %= _signature;
+	}
+
+	float getBeatProgress() 
+	{
+		return float(ofGetSystemTime() - getTimeStamp()) / getBeatLengthMillis();
+	}
+
+	float getBarProgress() 
+	{
+		return (getBeatProgress() + getCounter()) / getSignature();
+	}
+
+	string toString() 
+	{
+		return 
+		"bpm: " + ofToString(_bpm) + "\n" +
+		"signature: " + ofToString(_signature) + "\n" +
+		"counter: " + ofToString(_counter) + "\n" +
+		"timeStamp: " + ofToString(_timeStamp) + "\n";
+	}
+
 
 };

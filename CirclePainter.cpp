@@ -8,11 +8,7 @@ void CirclePainter::update()
 	_radius.value = ofLerp(_radius.value, _radius.target, _radius.changeRate);
 	_radius.target = ofLerp(_radius.target, _radius.init, _radius.changeRate);
 
-	////TODO: move this to Beat, or Tempo or timeUtils.
-	//unsigned long long now = ofGetSystemTime();
-	//float diffSec = float(now - _beat.getTimeStamp()) / 1000.0f;
-	//float progress = (diffSec / _tempo.getBeatLength());
-	_theta = _progress * TWO_PI;
+	_theta = _tempo.getBarProgress() * TWO_PI;
 
 }
 
@@ -20,14 +16,16 @@ void CirclePainter::draw()
 {
 	ofPushMatrix();
 	ofPushStyle();
-	ofSetColor(255, 0, 0);
-
-	_fill ? ofFill() : ofNoFill();
 
 	ofPoint screenCenter(ofGetWindowWidth() / 2, ofGetWindowHeight() / 2);
 	ofTranslate(screenCenter);
+
+	ofFill();
+	ofSetColor(255, _tempo.getBeatProgress() * 255, _tempo.getBarProgress() * 255);
 	ofCircle(ofPoint(), _radius.value);
 
+	ofSetColor(255, 0, 0);
+	_fill ? ofFill() : ofNoFill();
 	ofPoint xy = ofPoint(cosf(_theta), sinf(_theta));
 	ofPoint orbital = xy *_radius.value;
 	ofCircle(orbital, _radius.value / 10);
@@ -41,23 +39,16 @@ void CirclePainter::velocityUpdate( float& velocity )
 	_radius.target += velocity; 
 }
 
-void CirclePainter::tempo(Tempo& t)
+void CirclePainter::onTempoChange(Tempo& t)
 {
 	//printf("tempo bpm: %f\n", t.getBpm());
 	_tempo = t;
 }
 
 
-void CirclePainter::beat(Beat& beat)
+void CirclePainter::onBeat(Tempo& t)
 {
-	//printf("beat t:%d\n", beat.getTimeStamp());
-	_beat = beat;
+	_tempo = t;
 	_fill = !_fill;
-}
-
-void CirclePainter::click(float& level)
-{
-	//printf("beat t:%d\n", beat.getTimeStamp());
-	_progress = level;
-	_fill = !_fill;
+	_radius.target += 50;
 }

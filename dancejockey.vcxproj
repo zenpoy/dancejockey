@@ -117,7 +117,6 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="JockeyTypes.cpp" />
     <ClCompile Include="CirclePainter.cpp" />
     <ClCompile Include="GestureJockey.cpp" />
     <ClCompile Include="Jockey.cpp" />

@@ -3,6 +3,7 @@
 
 //--------------------------------------------------------------
 void testApp::setup(){
+	ofSetFrameRate(60);
 	ofSetVerticalSync(true);
 	ofSetCircleResolution(100);
 

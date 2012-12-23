@@ -11,8 +11,7 @@ public:
 	ofEvent<ofPoint> handUpdate;
 	ofEvent<bool> onGesture;
 	ofEvent<Tempo> tempo;
-	ofEvent<Beat> beat;
-	ofEvent<float> click;
+	ofEvent<Tempo> beat;
 
 	//TODO: more events here...
 };
@@ -42,8 +41,7 @@ void registerGestureJockeyEvents(ListenerClass * listener){
 
 template<class ListenerClass>
 void registerMetronomeEvents(ListenerClass * listener){
-	ofAddListener(getJockeyEvents().beat, listener, &ListenerClass::beat);
-	ofAddListener(getJockeyEvents().tempo, listener, &ListenerClass::tempo);
-	ofAddListener(getJockeyEvents().click, listener, &ListenerClass::click);
+	ofAddListener(getJockeyEvents().beat, listener, &ListenerClass::onBeat);
+	ofAddListener(getJockeyEvents().tempo, listener, &ListenerClass::onTempoChange);
 }
 

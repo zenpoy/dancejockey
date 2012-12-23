@@ -30,6 +30,8 @@ void Metronome::bang(unsigned long long& t)
 
 		if (1) //check if stdev is not too high
 		{
+			//TODO: change tempo gradually, or queue tempo change to set with the next beat. (using events?)
+			//currently may cause glitch when performing calculations...
 			_tempo.setBeatLengthMillis(intervalAverage);
 			ofNotifyEvent(getJockeyEvents().tempo, _tempo); //TODO send id
 		}
@@ -39,23 +41,13 @@ void Metronome::bang(unsigned long long& t)
 
 void Metronome::update()
 {
-	unsigned long long now = ofGetSystemTime();
-	float diffSec = float(now - _beat.getTimeStamp()) / 1000.0f;
-	float progress = (diffSec / _tempo.getBeatLength());
-
-	if (progress > 1.0)
+	if (_tempo.getBeatProgress() > 1.0)
 	{
-		_beat.setTimeStamp(now);
-		_counter++;
-		_counter %= _tempo.getNominator();
+		_tempo.setTimeStamp(ofGetSystemTime());
+		_tempo.incrementCounter();
 
-		int counter = _counter == 0 ? _tempo.getNominator() : _counter;
-
-		float level = float(counter) / _tempo.getNominator();
-
-		ofNotifyEvent(getJockeyEvents().click, level); //TODO send id
+		ofNotifyEvent(getJockeyEvents().beat, _tempo);
 	}
-
 }
 
 void Metronome::draw()

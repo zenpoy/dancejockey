@@ -20,17 +20,14 @@ public:
 	}
 
 	void velocityUpdate(float& velocity);
-	void beat(Beat& b);
-	void tempo(Tempo& b);
-	void click(float& level);
+
+	void onTempoChange(Tempo& b);
+	void onBeat(Tempo& level);
 
 private:
 
 	float _theta;
-	float _progress;
-
 	Tempo _tempo;
-	Beat _beat;
 
 	Value<float> _radius;
 	bool _fill;

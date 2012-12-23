@@ -6,7 +6,7 @@ class CirclePainter : Instrument
 
 public:
 
-	CirclePainter() : _radius(10, 0.01f), _theta(0.0f)
+	CirclePainter() : _radius(10, 0.05f), _theta(0.0f)
 	{
 	};
 

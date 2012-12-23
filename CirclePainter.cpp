@@ -16,14 +16,16 @@ void CirclePainter::draw()
 {
 	ofPushMatrix();
 	ofPushStyle();
-	ofSetColor(255, 0, 0);
-
-	_fill ? ofFill() : ofNoFill();
 
 	ofPoint screenCenter(ofGetWindowWidth() / 2, ofGetWindowHeight() / 2);
 	ofTranslate(screenCenter);
+
+	ofFill();
+	ofSetColor(255, _tempo.getBeatProgress() * 255, _tempo.getBarProgress() * 255);
 	ofCircle(ofPoint(), _radius.value);
 
+	ofSetColor(255, 0, 0);
+	_fill ? ofFill() : ofNoFill();
 	ofPoint xy = ofPoint(cosf(_theta), sinf(_theta));
 	ofPoint orbital = xy *_radius.value;
 	ofCircle(orbital, _radius.value / 10);
@@ -48,4 +50,5 @@ void CirclePainter::onBeat(Tempo& t)
 {
 	_tempo = t;
 	_fill = !_fill;
+	_radius.target += 50;
 }

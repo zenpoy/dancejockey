@@ -1,5 +1,12 @@
 #include "testApp.h"
 
+#include "..\HandJockey.h"
+#include "..\SynthPlayer.h"
+#include "..\GestureJockey.h"
+#include "..\MouseJockey.h"
+#include "..\Metronome.h"
+#include "..\CirclePainter.h"
+
 
 //--------------------------------------------------------------
 void testApp::setup(){
@@ -8,19 +15,23 @@ void testApp::setup(){
 	ofSetCircleResolution(100);
 	sceneCam.setGlobalPosition(0,0,2000);
 
-	handJockey.setup();
-	gestureJockey.setup();
-	mouseJockey.setup();
-	circlePainter.setup();
-	synthPlayer.setup();
-	metronome.setup();
-	
+	instruments.push_back(new HandJockey);
+	instruments.push_back(new GestureJockey);
+	instruments.push_back(new MouseJockey);
+	instruments.push_back(new CirclePainter);
+	instruments.push_back(new SynthPlayer);
+	instruments.push_back(new Metronome);
+
+
+	for (vector<Instrument*>::iterator it = instruments.begin(); it != instruments.end(); ++it)
+	(*it)->setup();
+
 }
 
 //--------------------------------------------------------------
 void testApp::update(){
-	circlePainter.update(); // todo 1. ofAttach(draw...)
-	metronome.update(); // todo 1. ofAttach(draw...)
+	for (vector<Instrument*>::iterator it = instruments.begin(); it != instruments.end(); ++it)
+		(*it)->update();
 }
 
 //--------------------------------------------------------------
@@ -28,11 +39,12 @@ void testApp::draw(){
 	ofBackground(0);
 
 	sceneCam.begin();
-	gestureJockey.draw3D();
+	for (vector<Instrument*>::iterator it = instruments.begin(); it != instruments.end(); ++it)
+		(*it)->draw3D();
 	sceneCam.end();
 
-	circlePainter.draw2D(); // todo 1. ofAttach(draw...)
-	metronome.draw2D();
+	for (vector<Instrument*>::iterator it = instruments.begin(); it != instruments.end(); ++it)
+		(*it)->draw2D();
 
 }
 
@@ -90,5 +102,6 @@ void testApp::dragEvent(ofDragInfo dragInfo){
 
 void testApp::exit()
 {
-	handJockey.exit();
+	for (vector<Instrument*>::reverse_iterator rit = instruments.rbegin(); rit != instruments.rend(); ++rit)
+		(*rit)->exit();
 }

@@ -4,12 +4,6 @@
 
 #include "..\Jockey.h"
 #include "..\Instrument.h"
-#include "..\HandJockey.h"
-#include "..\SynthPlayer.h"
-#include "..\GestureJockey.h"
-#include "..\MouseJockey.h"
-#include "..\Metronome.h"
-#include "..\CirclePainter.h"
 
 class testApp : public ofBaseApp{
 public:
@@ -30,13 +24,7 @@ public:
 
 private:
 
-	HandJockey handJockey;
-	GestureJockey gestureJockey;
-	MouseJockey mouseJockey;
-	CirclePainter circlePainter;
-	SynthPlayer synthPlayer;
-	Metronome metronome;
-
+	vector<Instrument*> instruments;
 
 	ofEasyCam sceneCam;
 

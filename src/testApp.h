@@ -36,4 +36,8 @@ private:
 	CirclePainter circlePainter;
 	SynthPlayer synthPlayer;
 	Metronome metronome;
+
+
+	ofEasyCam sceneCam;
+
 };

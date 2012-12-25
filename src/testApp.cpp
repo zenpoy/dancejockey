@@ -6,6 +6,7 @@ void testApp::setup(){
 	ofSetFrameRate(60);
 	ofSetVerticalSync(true);
 	ofSetCircleResolution(100);
+	sceneCam.setGlobalPosition(0,0,2000);
 
 	handJockey.setup();
 	gestureJockey.setup();
@@ -25,8 +26,14 @@ void testApp::update(){
 //--------------------------------------------------------------
 void testApp::draw(){
 	ofBackground(0);
-	circlePainter.draw(); // todo 1. ofAttach(draw...)
-	metronome.draw();
+
+	sceneCam.begin();
+	gestureJockey.draw3D();
+	sceneCam.end();
+
+	circlePainter.draw2D(); // todo 1. ofAttach(draw...)
+	metronome.draw2D();
+
 }
 
 //--------------------------------------------------------------

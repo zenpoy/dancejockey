@@ -1,15 +1,21 @@
 #include "GestureJockey.h"
+#include "ofGraphics.h"
 
 void GestureJockey::handUpdate( ofPoint& p )
 {
+	mutex.lock();
 	_positionHistory.push_front(ofPoint(p));
+	mutex.unlock();
 	if (_positionHistory.size() <= _historySize)
 	{
 		return;
 	}
 	else
 	{
+		mutex.lock();
 		_positionHistory.pop_back();
+		mutex.unlock();
+
 	}
 
 	//process
@@ -28,4 +34,17 @@ void GestureJockey::handUpdate( ofPoint& p )
 		bool x = true;
 		ofNotifyEvent(getJockeyEvents().onGesture, x); //TODO send id
 	}
+}
+
+
+void GestureJockey::draw3D()
+{
+	mutex.lock();
+	ofPushMatrix();
+	for (int i = 0; i < _positionHistory.size(); i++)
+	{
+		ofSphere(_positionHistory[i], (_historySize - i));
+	}
+	ofPopMatrix();
+	mutex.unlock();
 }

@@ -12,7 +12,7 @@ void CirclePainter::update()
 
 }
 
-void CirclePainter::draw()
+void CirclePainter::draw2D()
 {
 	ofPushMatrix();
 	ofPushStyle();

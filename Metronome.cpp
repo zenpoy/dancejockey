@@ -50,11 +50,12 @@ void Metronome::update()
 	}
 }
 
+/*
+	
 void Metronome::draw()
 {
 	ofPushStyle();
 	
-	/*
 	TODO:
 	//////////////////////////////////////////////////////////////////////////
 	ofDrawBitmapString("IntervalHistory", 0, 0);
@@ -72,9 +73,9 @@ void Metronome::draw()
 		ofDrawBitmapString(ofToString(_IntervalHistory[i]), x, y);
 
 	}
-	*/
+	
 
-	/*
+	
 	stringstream ss;
 
 	ss << "bangs"<< endl;
@@ -86,7 +87,8 @@ void Metronome::draw()
 		ss << _IntervalHistory[i] << endl;
 	ofDrawBitmapString(ss.str(), 0, 0);
 	
-	*/
+	
 
 	ofPopStyle();
 }
+*/

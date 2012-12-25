@@ -1,15 +1,15 @@
 #pragma once
-#include "jockey.h"
+#include "Instrument.h"
 #include <deque>
 
-class MouseJockey : Jockey
+class MouseJockey : public Instrument
 {
 
 public:
 	MouseJockey() : _historySize(2) {
 	}
 
-	void setup()
+	virtual void setup()
 	{
 		ofRegisterMouseEvents(this);
 	}

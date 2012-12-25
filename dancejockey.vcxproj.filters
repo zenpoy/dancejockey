@@ -14,6 +14,7 @@
     <ClCompile Include="MouseJockey.cpp" />
     <ClCompile Include="Metronome.cpp" />
     <ClCompile Include="CirclePainter.cpp" />
+    <ClCompile Include="JockeyEvents.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -33,5 +34,6 @@
     <ClInclude Include="Metronome.h" />
     <ClInclude Include="CirclePainter.h" />
     <ClInclude Include="JockeyTypes.h" />
+    <ClInclude Include="JockeyEvents.h" />
   </ItemGroup>
 </Project>

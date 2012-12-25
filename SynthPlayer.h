@@ -6,7 +6,7 @@ class SynthPlayer :	public Instrument
 {
 public:
 
-	void setup()
+	virtual void setup()
 	{
 		registerHandJockeyEvents(this);
 		registerGestureJockeyEvents(this);

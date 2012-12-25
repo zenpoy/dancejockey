@@ -121,6 +121,7 @@
     <ClCompile Include="GestureJockey.cpp" />
     <ClCompile Include="Jockey.cpp" />
     <ClCompile Include="HandJockey.cpp" />
+    <ClCompile Include="JockeyEvents.cpp" />
     <ClCompile Include="Metronome.cpp" />
     <ClCompile Include="MouseJockey.cpp" />
     <ClCompile Include="src\main.cpp" />
@@ -128,6 +129,7 @@
     <ClCompile Include="SynthPlayer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="JockeyEvents.h" />
     <ClInclude Include="JockeyTypes.h" />
     <ClInclude Include="CirclePainter.h" />
     <ClInclude Include="GestureJockey.h" />

@@ -75,6 +75,3 @@ void HandJockey::threadedFunction()
 
 		nite::NiTE::shutdown();
 }
-
-
-

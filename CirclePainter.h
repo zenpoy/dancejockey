@@ -1,7 +1,7 @@
 #pragma once
 #include "Instrument.h"
 
-class CirclePainter : Instrument
+class CirclePainter : public Instrument
 {
 
 public:
@@ -10,10 +10,8 @@ public:
 	{
 	};
 
-	void update();
-	void draw();
 
-	void setup()
+	virtual void setup()
 	{
 		registerJockeyVelocityEvents(this);
 		registerMetronomeEvents(this);		
@@ -23,6 +21,9 @@ public:
 
 	void onTempoChange(Tempo& b);
 	void onBeat(Tempo& level);
+
+	virtual void update();
+	virtual void draw2D();
 
 private:
 

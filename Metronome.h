@@ -4,21 +4,19 @@
 
 #include "ofUtils.h"
 
-class Metronome : Instrument
+class Metronome : public Instrument
 {
 public:
 	Metronome() :  _historySize(3)
 	{
 	}
 
-	  void update();
-	  void draw();
-
-	  void setup()
-	  {
+	virtual void update();
+	virtual void setup()
+	 {
 		  registerJockeyBangEvents(this);
 		  _tempo.setTimeStamp(ofGetSystemTime());
-	  }
+	 }
 
 	  void velocityUpdate(float& velocity);
 	  void bang(unsigned long long&);

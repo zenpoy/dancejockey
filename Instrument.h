@@ -15,6 +15,9 @@ struct Value
 class Instrument
 {
 public:
+	virtual void setup() {};
 	virtual void update() {};
-	virtual void draw() {};
+	virtual void draw2D() {};
+	virtual void draw3D() {};
+	virtual void exit() {};
 };

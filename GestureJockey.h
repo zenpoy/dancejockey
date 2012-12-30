@@ -18,6 +18,8 @@ public:
 
 	void handUpdate(TrackedPoint& p);
 
+	virtual void draw2D();
+
 private:
 	ofMutex mutex;
 	std::deque<TrackedPoint> _positionHistory;	
@@ -25,7 +27,13 @@ private:
 
 	ofPoint sum;
 	ofPoint avg;
-	float avgSqrDist;
+
+	float sumDistAvg;
+	float avgDistAvg;
+	float minDistAvg;
+	float maxDistAvg;
+
+	float circlePredictionFactor;
 
 };
 

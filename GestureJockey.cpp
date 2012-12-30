@@ -8,7 +8,7 @@ void GestureJockey::handUpdate( TrackedPoint& p )
 		mutex.lock();
 		_positionHistory.clear();
 		sum = ofPoint();
-		avgSqrDist = 0;
+		sumDistAvg = 0;
 
 		mutex.unlock();		
 		return;
@@ -30,12 +30,29 @@ void GestureJockey::handUpdate( TrackedPoint& p )
 	}
 
 	avg = sum / _positionHistory.size();
-	avgSqrDist = 0;
+	
+	sumDistAvg = 0;
+	minDistAvg = 1e10;
+	maxDistAvg = 0;
+
 	for(int i = 0; i < _positionHistory.size(); i++)
 	{
-		avgSqrDist += (_positionHistory[i].pos - avg).length(); 
-	}
+		ofPoint diff = (_positionHistory[i].pos - avg);
+		float len = diff.length();
+		if (len < minDistAvg) minDistAvg = len;
+		if (len > maxDistAvg) maxDistAvg = len;
 
+		sumDistAvg += len;
+	}
+	avgDistAvg = sumDistAvg / _positionHistory.size();
+
+
+	circlePredictionFactor = avgDistAvg / (maxDistAvg - minDistAvg);
+	if (circlePredictionFactor > 2.0f)
+	{
+		bool x = true;
+		ofNotifyEvent(getJockeyEvents().onGesture, x); //TODO send id
+	}
 
 
 	//process
@@ -49,11 +66,6 @@ void GestureJockey::handUpdate( TrackedPoint& p )
 	printf("%f\n", translation);
 	printf("%f\n", acceleration);
 
-	if (true)
-	{
-		bool x = true;
-		ofNotifyEvent(getJockeyEvents().onGesture, x); //TODO send id
-	}
 }
 
 
@@ -69,10 +81,28 @@ void GestureJockey::draw3D()
 		ofSphere(_positionHistory[i].pos, (_historySize - i) / 2);
 		ofLine(_positionHistory[i].pos, _positionHistory[i-1].pos);
 	}
+
+	ofNoFill();
+	ofSetColor(ofColor::blue);
+	ofSphere(avg, 5 + maxDistAvg);
+
+	ofSetColor(ofColor::green);
+	ofSphere(avg, 5 + avgDistAvg);
+
 	ofSetColor(ofColor::red);
-	ofSphere(sum / _positionHistory.size(), 5 + avgSqrDist / 100);
+	ofSphere(avg, 5 + minDistAvg);
+
+	ofSetColor(ofColor::yellow);
+	ofSphere(ofPoint(), 5 +  50 * circlePredictionFactor);
+
+
 
 	mutex.unlock();
 
 	ofPopMatrix();
+}
+
+void GestureJockey::draw2D()
+{
+	ofDrawBitmapString(ofToString(circlePredictionFactor), 10, 10);
 }

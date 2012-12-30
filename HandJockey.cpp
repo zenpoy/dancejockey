@@ -2,6 +2,20 @@
 
 #include "Nite.h"
 
+TrackedPoint toTrackedPoint( const nite::HandData& hand )
+{
+	TrackedPoint p;
+	p.status = 
+		hand.isNew() ? TrackedPoint::TrackedPointStatus::found : 
+		hand.isTracking() ? TrackedPoint::TrackedPointStatus::tracked :
+		hand.isLost() ? TrackedPoint::TrackedPointStatus::lost :
+		TrackedPoint::TrackedPointStatus::untracked; //touching fov
+		p.id = hand.getId();
+		p.pos = ofPoint(hand.getPosition().x, hand.getPosition().y,hand.getPosition().z);
+
+		return p;
+}
+
 
 void HandJockey::setup()
 {
@@ -64,12 +78,9 @@ void HandJockey::threadedFunction()
 			for (int i = 0; i < hands.getSize(); ++i)
 			{
 				const nite::HandData& hand = hands[i];
-				if (hand.isTracking())
-				{
-					ofPoint pos(hand.getPosition().x, hand.getPosition().y, hand.getPosition().z);
-					printf("%d. (%5.2f, %5.2f, %5.2f)\n", hand.getId(), hand.getPosition().x, hand.getPosition().y, hand.getPosition().z);
-					ofNotifyEvent(getJockeyEvents().handUpdate, pos); //TODO send id
-				}
+				TrackedPoint p = toTrackedPoint(hand);
+				p.time = handTrackerFrame.getTimestamp();
+				ofNotifyEvent(getJockeyEvents().handUpdate, p); //TODO send id
 			}
 		}
 

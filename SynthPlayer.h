@@ -17,7 +17,7 @@ public:
 
 	}
 
-	void handUpdate(ofPoint& p);
+	void handUpdate(TrackedPoint& p);
 	void onGesture(bool& b);
 
 private:

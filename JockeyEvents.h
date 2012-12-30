@@ -7,7 +7,7 @@ class JockeyEvents{
 public:
 	ofEvent<float> velocityUpdate;
 	ofEvent<unsigned long long> bang;
-	ofEvent<ofPoint> handUpdate;
+	ofEvent<TrackedPoint> handUpdate;
 	ofEvent<bool> onGesture;
 	ofEvent<Tempo> tempo;
 	ofEvent<Tempo> beat;

@@ -1,6 +1,36 @@
 #pragma once
 #include "ofUtils.h"
 
+class TrackedPoint
+{
+public:
+
+	TrackedPoint() : status(untracked)
+	{
+	}
+
+	enum TrackedPointStatus
+	{
+		found,
+		tracked,
+		lost,
+		untracked
+	} status;
+
+	int id;
+	int time;
+	ofPoint pos;
+
+	bool isTracked(){ return status == tracked;}
+	bool isFound(){ return status == found;}
+	bool isLost() {	return status == lost;}
+
+
+};
+
+
+
+
 class Tempo
 {
 	float _bpm;
